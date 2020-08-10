@@ -1,2 +1,10 @@
 # sql-convertor
-convert SQL table defination to peewee/django/... model defination
+
+Convert SQL table definition to peewee/django/... model definition
+
+Convert peewee model definition to SQL
+
+Convert django model definition to peewee
+
+![convertor](./convertor.png)
+
