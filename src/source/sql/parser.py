@@ -11,7 +11,7 @@ from pyparsing import (
     pyparsing_common
 )
 from .helper import SQLHelper
-from .. import BaseParser
+from ..base import BaseParser
 
 
 class SQLParser(BaseParser):

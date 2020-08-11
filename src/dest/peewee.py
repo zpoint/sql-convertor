@@ -1,22 +1,8 @@
-from . import Dest
+from .base import Dest
 
 
 class PeeWeeOutPut(Dest):
-    field_type_map = {
-        "VARCHAR": "CharField",
-        "INT": "IntegerField",
-        "TINYINT": "SmallIntegerField",
-        "CHAR": "CharField",
-        "DATE": "DateField",
-        "DATETIME": "DateTimeField",
-        "DECIMAL": "DecimalField"
-    }
-    default_map = {
-        "00000000000000000000000000000000": "NULL_UUID",
-        "1970-01-01 00:00:00": "NULL_DATETIME"
-    }
-
-    def emit_table(self) -> str:
+    def emit(self) -> str:
         ret_str = ""
         for table_name, table_dict in self.sql_table_dict.items():
             self.get_pk(table_dict)
@@ -39,7 +25,7 @@ class PeeWeeOutPut(Dest):
         if "default" in row_dict:
             default = row_dict["default"]
 
-        key = self.strip_func(row_dict["field_name"])
+        key = self.strip_key_func(row_dict["field_name"])
         self.key_list.append(key)
         if row_dict["field_type"] == "TINYINT" and row_dict["field_length"] == 1:
             field_type = "BooleanField"

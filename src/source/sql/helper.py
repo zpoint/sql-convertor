@@ -5,7 +5,7 @@ help:
 https://stackoverflow.com/questions/1394998/parsing-sql-with-python
 
 """
-from .. import BaseHelper
+from ..base import BaseHelper
 
 
 class SQLHelper(BaseHelper):
