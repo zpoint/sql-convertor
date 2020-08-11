@@ -27,6 +27,11 @@ KEY \`ix_company\` (\`c_company_id\`) USING BTREE \
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';" > 1.sql
 # only support create table definition
 # 只支持建表语句
+# convertor 是程序入口名称
+# sql 是数据来源格式
+# peewee 是输出代码格式
+# 1.sql 是来源文件
+# 用法就是 convertor 源格式 目标格式 来源文件/代码
 $ convertor sql peewee 1.sql
 ```
 The output
