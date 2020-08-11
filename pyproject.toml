@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "sql_convertor"
+author = "zpoint"
+author-email = "zp0int@qq.com"
+home-page = "https://github.com/zpoint/sql-convertor"
+classifiers = ["License :: OSI Approved :: MIT License"]
+requires=["pyparsing"]
+requires-python=">=3.5.2"
+keywords="sql convertor peewee"
+dist-name="sql-convertor"
+
+[tool.flit.scripts]
+convertor="sql_convertor:main"
