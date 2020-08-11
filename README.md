@@ -19,13 +19,18 @@ Convert django model definition to peewee
 
 ## example
 
-```python3
+```shell script
 $ echo "CREATE TABLE \`t_record\` ( \
 \`c_id\` INT(64) NOT NULL AUTO_INCREMENT COMMENT '自增主键', \
 PRIMARY KEY (\`c_id\`), \
 KEY \`ix_company\` (\`c_company_id\`) USING BTREE \
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';" > 1.sql
+# only support create table definition
+# 只支持建表语句
 $ convertor sql peewee 1.sql
+```
+The output
+```python3
 class Record(BaseModel):
     """本段代码由程序从SQL建表语句自动生成, 需要帮助请联系 zp0int@qq.com"""
     id = peewee.IntegerField(
@@ -47,7 +52,7 @@ class Record(BaseModel):
 ```shell script
 $ convertor sql peewee 1.sql out.py
 $ cat out.py
-# same as above
+# output is the same as above
 ```
 
 ```shell script
@@ -56,6 +61,6 @@ $ convertor sql peewee "CREATE TABLE \`t_record\` ( \
     PRIMARY KEY (\`c_id\`), \
     KEY \`ix_company\` (\`c_company_id\`) USING BTREE \
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';"
-# same as above
+# output is the same as above
 ```
 
