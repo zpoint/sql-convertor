@@ -8,3 +8,54 @@ Convert django model definition to peewee
 
 ![convertor](./convertor.png)
 
+## install
+
+    pip3 install sql-convertor 
+
+## Usage
+
+    $ convertor --help
+    $ ...
+
+## example
+
+```python3
+$ echo "CREATE TABLE \`t_record\` ( \
+\`c_id\` INT(64) NOT NULL AUTO_INCREMENT COMMENT '自增主键', \
+PRIMARY KEY (\`c_id\`), \
+KEY \`ix_company\` (\`c_company_id\`) USING BTREE \
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';" > 1.sql
+$ convertor sql peewee 1.sql
+class Record(BaseModel):
+    """本段代码由程序从SQL建表语句自动生成, 需要帮助请联系 zp0int@qq.com"""
+    id = peewee.IntegerField(
+        verbose_name="自增主键",
+        null=False,
+        primary_key=True,
+        db_column="c_id")
+
+    class Meta:
+        table_name = "t_record"
+        database = db
+
+    def to_dict(self):
+        return {
+            "id": self.id
+        }
+```
+
+```shell script
+$ convertor sql peewee 1.sql out.py
+$ cat out.py
+# same as above
+```
+
+```shell script
+$ convertor sql peewee "CREATE TABLE \`t_record\` ( \
+    \`c_id\` INT(64) NOT NULL AUTO_INCREMENT COMMENT '自增主键', \
+    PRIMARY KEY (\`c_id\`), \
+    KEY \`ix_company\` (\`c_company_id\`) USING BTREE \
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';"
+# same as above
+```
+
