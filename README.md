@@ -12,7 +12,7 @@ Convert django model definition to peewee
 
     pip3 install sql-convertor 
 
-## Usage
+## usage
 
     $ convertor --help
     $ ...
@@ -63,4 +63,8 @@ $ convertor sql peewee "CREATE TABLE \`t_record\` ( \
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';"
 # output is the same as above
 ```
+
+## unittest
+
+    python3 -m pytest
 
