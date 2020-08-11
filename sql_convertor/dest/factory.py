@@ -1,7 +1,7 @@
 from collections import defaultdict
 from .peewee import PeeWeeOutPut
 from .base import Dest
-from source.base import BaseParser
+from sql_convertor.source.base import BaseParser
 
 OriginTypeMap = {
     "peewee": PeeWeeOutPut

@@ -12,3 +12,6 @@ requires=["pyparsing"]
 requires-python=">=3.5.2"
 keywords="sql convertor peewee"
 dist-name="sql-convertor"
+
+[tool.flit.scripts]
+convertor="sql_convertor:main"

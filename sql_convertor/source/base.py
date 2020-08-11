@@ -17,6 +17,7 @@ class BaseParser(metaclass=abc.ABCMeta):
         self.generate_parser()
 
     def parse_string(self, string: str):
+        string = string.upper()
         self.defs.parseString(string)
 
     def parse_file(self, filename: str):

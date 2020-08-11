@@ -1,8 +1,9 @@
 import os
 import sys
 import argparse
-from source import ParserFactory
-from dest import OutPutFactory
+from argparse import RawTextHelpFormatter
+from sql_convertor.source import ParserFactory
+from sql_convertor.dest import OutPutFactory
 
 
 class Args(object):
@@ -15,8 +16,19 @@ class Args(object):
 def get_args():
     parser = argparse.ArgumentParser(
         prog="convert",
-        description="convert SQL table definition to peewee/django/... model definition, "
-                    "or convert model definition to SQL table"
+        formatter_class=RawTextHelpFormatter,
+        description="""
+convert SQL table definition to peewee/django/... model definition, or convert model definition to SQL table
+                    
+example:
+    %convertor sql peewee 1.sql
+    %convertor sql peewee 1.sql out.py
+    %convertor sql peewee "CREATE TABLE \\`t_record\\` ( \\
+    \\`c_id\\` INT(64) NOT NULL AUTO_INCREMENT COMMENT '自增主键', \\
+    PRIMARY KEY (\\`c_id\\`), \\
+    KEY \\`ix_company\\` (\\`c_company_id\\`) USING BTREE \\
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';"
+    """,
     )
     parser.add_argument("from", choices=ParserFactory.list_all(), help=Args.from_desc, type=str.lower,
                         default=ParserFactory.list_all()[0])
@@ -45,3 +57,7 @@ def main():
             f.write(result)
     else:
         sys.stdout.write(result)
+
+
+if __name__ == "__main__":
+    main()
