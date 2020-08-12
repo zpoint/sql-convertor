@@ -65,8 +65,8 @@ class PeeWeeOutPut(Dest):
             ret_str += self.next_indent + "default=%s,%s" % (default, self.br)
         if key == self.pk:
             ret_str += self.next_indent + "primary_key=%s,%s" % (repr(True), self.br)
-        # db_column
-        ret_str += self.next_indent + "db_column=\"%s\")%s" % (row_dict["field_name"].lower(), self.br*2)
+        # column_name
+        ret_str += self.next_indent + "column_name=\"%s\")%s" % (row_dict["field_name"].lower(), self.br*2)
         return ret_str
 
     def emit_table_cls(self, table_name):

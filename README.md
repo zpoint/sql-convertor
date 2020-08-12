@@ -42,7 +42,7 @@ class Record(BaseModel):
         verbose_name="自增主键",
         null=False,
         primary_key=True,
-        db_column="c_id")
+        column_name="c_id")
 
     class Meta:
         table_name = "t_record"
@@ -71,5 +71,5 @@ $ convertor sql peewee "CREATE TABLE \`t_record\` ( \
 
 ## unittest
 
-    python3 -m pytest
+    sh unittest.sh
 
