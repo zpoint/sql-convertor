@@ -5,12 +5,14 @@ class PeeWeeOutPut(Dest):
     def emit(self) -> str:
         ret_str = ""
         for table_name, table_dict in self.sql_table_dict.items():
+            self.key_list.clear()
+            # print(f"{table_name} {table_dict}")
             self.get_pk(table_dict)
             if self.lower_case:
                 table_name = table_name.lower()
 
             self.reset_indent()
-            ret_str = self.emit_table_cls(table_name)
+            ret_str += self.emit_table_cls(table_name)
             self.forward_indent()
             for col in table_dict["cols"]:
                 ret_str += self.emit_row(col)
@@ -52,7 +54,7 @@ class PeeWeeOutPut(Dest):
 
         ret_str = self.indent + "%s = peewee.%s(%s" % (key, field_type, self.br)
         # max_length
-        if field_type == "CharField" and "field_length" in self.field_type_map:
+        if field_type == "CharField" and "field_length" in row_dict:
             ret_str += self.next_indent + "max_length=%s,%s" % (row_dict["field_length"], self.br)
         # verbose_name
         if "comment" in row_dict:

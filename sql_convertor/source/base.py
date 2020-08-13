@@ -18,7 +18,9 @@ class BaseParser(metaclass=abc.ABCMeta):
 
     def parse_string(self, string: str):
         string = string.upper()
-        self.defs.parseString(string)
+        for match in self.defs.searchString(string):
+            # already handled by helper
+            pass
 
     def parse_file(self, filename: str):
         with open(filename, "r") as f:

@@ -78,8 +78,9 @@ class SQLParser(BaseParser):
         )
 
         statement_def = create_table_def
-        defs = OneOrMore(statement_def)
-        self.defs = defs
+        # defs = OneOrMore(statement_def)
+        # self.defs = defs
+        self.defs = statement_def
 
     def _get_helper(self):
         return SQLHelper(self.d_table, self.d_curr)
