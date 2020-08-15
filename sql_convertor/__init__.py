@@ -1,4 +1,10 @@
-"""convert data from a format to another format, read or write from file or database, suitable for iDataAPI"""
+"""
+Convert SQL table definition to peewee/django/... model definition
+
+Convert peewee model definition to SQL
+
+Convert django model definition to peewee
+"""
 
 from .cli import main
 from .source.factory import ParserFactory
