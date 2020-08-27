@@ -9,7 +9,9 @@ field_type_map = {
     "CHAR": "CharField",
     "DATE": "DateField",
     "DATETIME": "DateTimeField",
-    "DECIMAL": "DecimalField"
+    "DECIMAL": "DecimalField",
+    "TEXT": "TextField",
+    "BLOB": "TextField"
 }
 default_map = {
     "00000000000000000000000000000000": "NULL_UUID",
