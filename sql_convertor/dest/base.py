@@ -5,6 +5,7 @@ field_type_map = {
     "VARCHAR": "CharField",
     "INT": "IntegerField",
     "TINYINT": "SmallIntegerField",
+    "SMALLINT": "SmallIntegerField",
     "CHAR": "CharField",
     "DATE": "DateField",
     "DATETIME": "DateTimeField",
