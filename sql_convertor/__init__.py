@@ -13,4 +13,4 @@ from .dest.factory import OutPutFactory
 __all__ = ["ParserFactory", "OutPutFactory"]
 
 
-__version__ = '0.0.5'
+__version__ = '0.0.6'
