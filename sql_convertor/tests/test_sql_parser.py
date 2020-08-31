@@ -70,5 +70,5 @@ class TestSQLParser(object):
         assert "C_IS_DELETE" in self.field_name_row_map
         assert self.field_name_row_map["C_IS_DELETE"] == {
             'field_name': 'C_IS_DELETE', 'field_type': 'TINYINT', 'field_length': 1, 'null': False,
-            'default': 0, 'comment': '是否删除'
+            'default': '0', 'comment': '是否删除'
         }

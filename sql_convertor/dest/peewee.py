@@ -1,3 +1,4 @@
+import re
 from .base import Dest
 
 
@@ -32,7 +33,8 @@ class PeeWeeOutPut(Dest):
         if row_dict["field_type"] == "TINYINT" and row_dict["field_length"] == 1:
             field_type = "BooleanField"
             if default is not None:
-                default = repr(bool(row_dict["default"]))
+                # row_dict["default"] = re.sub('`"\'', '', row_dict["default"])
+                default = repr(bool(int(row_dict["default"])))
                 default_set = True
         else:
             field_type = self.field_type_map[row_dict["field_type"]]
