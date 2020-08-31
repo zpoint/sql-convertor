@@ -1,5 +1,6 @@
 import re
 from .base import ParserFactory, OutPutFactory, sampleSQL, PEEWEE_COL_LIST, PEEWEE_META_LIST, PEEWEE_TO_DICT_LIST
+from ..dest.peewee import PeeWeeOutPut
 
 
 class TestPeeWeeEmit(object):
@@ -7,7 +8,7 @@ class TestPeeWeeEmit(object):
     def setup_class(cls):
         cls.parser = ParserFactory.create_parser("sql")
         cls.parser.parse_string(sampleSQL)
-        cls.outputer = OutPutFactory.create_output("peewee", cls.parser)
+        cls.outputer: PeeWeeOutPut = OutPutFactory.create_output("peewee", cls.parser)
 
     def test_emit(self):
         index = 0
