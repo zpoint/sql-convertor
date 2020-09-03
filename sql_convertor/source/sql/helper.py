@@ -100,3 +100,6 @@ class SQLHelper(BaseHelper):
         right = tok[equal_index+1]
         self.d_curr[left] = right
         return origin_tok
+
+    def parse_char_set(self, s, loc, tok):
+        return {"char_set": tok[0]}

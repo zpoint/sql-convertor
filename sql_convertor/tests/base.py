@@ -10,6 +10,7 @@ sampleSQL = """CREATE TABLE `record` (
   `c_add_by` varchar(32) NOT NULL DEFAULT '00000000000000000000000000000000' COMMENT '创建用户id',
   `c_add_dt` datetime NOT NULL DEFAULT "1970-01-01 00:00:00" COMMENT '创建时间',
   `c_is_delete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除',
+  `c_statement` VARCHAR(1000) CHARACTER SET UTF8MB4 COLLATE UTF8MB4_BIN DEFAULT '' COMMENT '声明字段',
   PRIMARY KEY (`c_id`),
   KEY `ix_company` (`c_company_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';
@@ -83,6 +84,13 @@ PEEWEE_COL_LIST = [
                 null=False,
                 default=False,
                 column_name="c_is_delete")
+        """,
+        """
+            statement = peewee.CharField(
+                max_length=1000,
+                verbose_name="声明字段",
+                default="",
+                column_name="c_statement")
         """
     ],
     [
@@ -120,7 +128,8 @@ PEEWEE_TO_DICT_LIST = [
                 "update_by": self.update_by,
                 "add_by": self.add_by,
                 "add_dt": self.add_dt,
-                "is_delete": self.is_delete
+                "is_delete": self.is_delete,
+                "statement": self.statement
             }
     """,
     """
