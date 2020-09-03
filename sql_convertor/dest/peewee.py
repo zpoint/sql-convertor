@@ -51,6 +51,8 @@ class PeeWeeOutPut(Dest):
                     default = int(default)
                 else:
                     default = "\"" + default + "\""
+            elif default == "CURRENT_TIMESTAMP":
+                default = "datetime.datetime.now"
             else:
                 default = "\"%s\"" % (default, )
 

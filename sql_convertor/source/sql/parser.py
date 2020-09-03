@@ -32,21 +32,23 @@ class SQLParser(BaseParser):
         enclosing_int = "(" + number + ")"
         enclosing_func = "(" + number + OneOrMore("," + number) + ")"
         enclosing_keyword = "(" + OneOrMore(keyword) + ")"
+        char_set = Literal("CHARACTER SET") + word + Optional(Literal("COLLATE") + word)
         nullable = Literal("NOT NULL") | Literal("NULL")
-        default = Literal("DEFAULT") + (string_literal | number | Literal("NULL"))
+        default = Literal("DEFAULT") + (string_literal | number | Literal("NULL") | keyword)
         comment = Literal("COMMENT") + string_literal
         auto_inc = Literal("AUTO_INCREMENT")
 
         enclosing_int.setParseAction(self.helper.parse_field_length)
         enclosing_func.setParseAction(self.helper.parse_field_length_func)
         keyword.setParseAction(self.helper.parse_field_name)
+        char_set.setParseAction(self.helper.parse_char_set)
         type_.setParseAction(self.helper.parse_field_type)
         nullable.setParseAction(self.helper.parse_nullable)
         auto_inc.setParseAction(self.helper.parse_auto_inc)
         default.setParseAction(self.helper.parse_default_value)
         comment.setParseAction(self.helper.parse_comment)
-        col_stm = keyword + type_ + Optional(enclosing_int | enclosing_func) + Optional(nullable) + Optional(
-            auto_inc) + Optional(default) + Optional(comment)
+        #   `c_add_dt` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+        col_stm = keyword + type_ + Optional(enclosing_int | enclosing_func) + Optional(nullable) + Optional(auto_inc) + Optional(char_set) + Optional(default) + Optional(comment)
         col_stm.setParseAction(self.helper.parse_col)
 
         # key

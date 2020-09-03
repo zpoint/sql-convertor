@@ -1,5 +1,6 @@
-HINT_TEXT = "Code of this model is auto generated from SQL, if you need help please refer to zp0int@qq.com"
-HINT_TEXT_CN = "本段代码由程序从SQL建表语句自动生成, 需要帮助请联系 zp0int@qq.com"
+HINT_TEXT = "Code of this model is auto generated from SQL, " \
+            "if you need help please reach github.com/zpoint/sql-convertor"
+HINT_TEXT_CN = "本段代码由程序从SQL建表语句自动生成, 需要帮助请访问 github.com/zpoint/sql-convertor"
 
 field_type_map = {
     "VARCHAR": "CharField",
@@ -11,7 +12,8 @@ field_type_map = {
     "DATETIME": "DateTimeField",
     "DECIMAL": "DecimalField",
     "TEXT": "TextField",
-    "BLOB": "TextField"
+    "BLOB": "TextField",
+    "TIMESTAMP": "TimestampField"
 }
 default_map = {
     "00000000000000000000000000000000": "NULL_UUID",
