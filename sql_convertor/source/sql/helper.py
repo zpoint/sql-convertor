@@ -41,14 +41,18 @@ class SQLHelper(BaseHelper):
         return {"field_length": tok}
 
     def parse_nullable(self, s, loc, tok):
-        if tok == "NULL":
+        if tok[0] == "NULL":
             null = True
         else:
             null = False
         return {"null": null}
 
     def parse_default_value(self, s, loc, tok):
-        return {"default": tok[1]}
+        if isinstance(tok[1], dict) and "field_name" in tok[1]:
+            tok = tok[1]["field_name"]
+        else:
+            tok = tok[1]
+        return {"default": tok}
 
     def parse_comment(self, s, loc, tok):
         return {"comment": "".join(tok[1])}

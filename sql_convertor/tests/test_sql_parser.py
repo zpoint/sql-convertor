@@ -72,3 +72,17 @@ class TestSQLParser(object):
             'field_name': 'C_IS_DELETE', 'field_type': 'TINYINT', 'field_length': 1, 'null': False,
             'default': '0', 'comment': '是否删除'
         }
+
+    def test_c_statement(self):
+        assert "C_STATEMENT" in self.field_name_row_map
+        assert self.field_name_row_map["C_STATEMENT"] == {
+            'char_set': 'CHARACTER SET', 'comment': '声明字段', 'default': '', 'field_length': 1000,
+            'field_name': 'C_STATEMENT', 'field_type': 'VARCHAR'
+        }
+
+    def test_c_record_time(self):
+        assert "C_RECORD_TIME" in self.field_name_row_map
+        assert self.field_name_row_map["C_RECORD_TIME"] == {
+            'comment': '记录时间', 'default': 'CURRENT_TIMESTAMP', 'field_name': 'C_RECORD_TIME',
+            'field_type': 'TIMESTAMP', 'null': True
+        }
