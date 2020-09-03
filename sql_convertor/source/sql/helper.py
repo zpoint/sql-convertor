@@ -107,3 +107,6 @@ class SQLHelper(BaseHelper):
 
     def parse_char_set(self, s, loc, tok):
         return {"char_set": tok[0]}
+
+    def on_action(self, s, loc, tok):
+        return {"default": tok[1]["field_name"]}

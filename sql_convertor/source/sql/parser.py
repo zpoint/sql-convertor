@@ -37,6 +37,7 @@ class SQLParser(BaseParser):
         default = Literal("DEFAULT") + (string_literal | number | Literal("NULL") | keyword)
         comment = Literal("COMMENT") + string_literal
         auto_inc = Literal("AUTO_INCREMENT")
+        on_action = Literal("ON UPDATE") + keyword
 
         enclosing_int.setParseAction(self.helper.parse_field_length)
         enclosing_func.setParseAction(self.helper.parse_field_length_func)
@@ -47,8 +48,9 @@ class SQLParser(BaseParser):
         auto_inc.setParseAction(self.helper.parse_auto_inc)
         default.setParseAction(self.helper.parse_default_value)
         comment.setParseAction(self.helper.parse_comment)
+        on_action.setParseAction(self.helper.on_action)
         #   `c_add_dt` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-        col_stm = keyword + type_ + Optional(enclosing_int | enclosing_func) + Optional(nullable) + Optional(auto_inc) + Optional(char_set) + Optional(default) + Optional(comment)
+        col_stm = keyword + type_ + Optional(enclosing_int | enclosing_func) + Optional(nullable) + Optional(auto_inc) + Optional(char_set) + Optional(default) + Optional(on_action) + Optional(comment)
         col_stm.setParseAction(self.helper.parse_col)
 
         # key

@@ -12,6 +12,7 @@ sampleSQL = """CREATE TABLE `record` (
   `c_is_delete` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否删除',
   `c_statement` VARCHAR(1000) CHARACTER SET UTF8MB4 COLLATE UTF8MB4_BIN DEFAULT '' COMMENT '声明字段',
   `c_record_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '记录时间',
+  `c_test_update_dt` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间2',
   PRIMARY KEY (`c_id`),
   KEY `ix_company` (`c_company_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='记录表';
@@ -99,7 +100,14 @@ PEEWEE_COL_LIST = [
                 null=True,
                 default=datetime.datetime.now,
                 column_name="c_record_time")
+        """,
         """
+            test_update_dt = peewee.TimestampField(
+                verbose_name="修改时间2",
+                null=True,
+                default=datetime.datetime.now,
+                column_name="c_test_update_dt")
+        """,
     ],
     [
         """
@@ -138,7 +146,8 @@ PEEWEE_TO_DICT_LIST = [
                 "add_dt": self.add_dt,
                 "is_delete": self.is_delete,
                 "statement": self.statement,
-                "record_time": self.record_time
+                "record_time": self.record_time,
+                "test_update_dt": self.test_update_dt
             }
     """,
     """

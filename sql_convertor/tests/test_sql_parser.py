@@ -86,3 +86,10 @@ class TestSQLParser(object):
             'comment': '记录时间', 'default': 'CURRENT_TIMESTAMP', 'field_name': 'C_RECORD_TIME',
             'field_type': 'TIMESTAMP', 'null': True
         }
+
+    def test_test_update_dt(self):
+        assert "C_TEST_UPDATE_DT" in self.field_name_row_map
+        assert self.field_name_row_map["C_TEST_UPDATE_DT"] == {
+            'comment': '修改时间2', 'default': 'CURRENT_TIMESTAMP', 'field_name': 'C_TEST_UPDATE_DT',
+            'field_type': 'TIMESTAMP', 'null': True
+        }
